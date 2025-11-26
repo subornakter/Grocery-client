@@ -5,7 +5,7 @@ import Image from "next/image";
 export default function ExtraSection() {
   return (
     <section
-      className="w-full bg-cover bg-center bg-no-repeat py-20 md:py-28"
+      className="max-w-7xl mx-auto bg-cover bg-center bg-no-repeat py-20 md:py-28"
       style={{
         backgroundImage: "url('https://i.ibb.co.com/KjNpkpFg/bg-1.webp')",
       }}

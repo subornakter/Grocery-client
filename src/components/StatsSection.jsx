@@ -26,7 +26,7 @@ export default function StatsSection() {
   ];
 
   return (
-    <div className="w-full py-10">
+    <div className="max-w-7xl mx-auto py-10">
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 px-4">
         {stats.map((item, index) => (
           <div
