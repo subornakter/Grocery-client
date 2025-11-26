@@ -152,7 +152,43 @@ const handleUpdateProduct = (e) => {
   return (
     <div className="max-w-6xl p-6 mx-auto">
       <h1 className="mb-6 text-3xl font-bold">Manage Products</h1>
-      <div className="overflow-x-auto">
+        {/* Mobile-friendly layout */}
+  <div className="grid grid-cols-1 gap-6 md:hidden">
+    {products.map((product) => (
+      <div key={product._id} className="p-4 border rounded-lg shadow-sm">
+        <img
+          src={product.image}
+          alt={product.name}
+          className="w-full h-40 object-cover rounded mb-3"
+        />
+        <h2 className="text-lg font-semibold">{product.name}</h2>
+        <p className="text-sm text-gray-500">Category: {product.category}</p>
+        <p className="text-sm text-gray-500">Price: ${product.price}</p>
+        <p className="text-sm text-gray-500">Stock: {product.stock}</p>
+        <div className="flex gap-2 mt-3">
+          <button
+            onClick={() => router.push(`/shop/${product._id}`)}
+            className="flex-1 px-3 py-1 text-white bg-blue-500 rounded hover:bg-blue-600"
+          >
+            View
+          </button>
+          <button
+            onClick={() => openEditModal(product)}
+            className="flex-1 px-3 py-1 text-white bg-yellow-500 rounded hover:bg-yellow-600"
+          >
+            Edit
+          </button>
+          <button
+            onClick={() => handleDelete(product._id)}
+            className="flex-1 px-3 py-1 text-white bg-red-500 rounded hover:bg-red-600"
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+    ))}
+  </div>
+    <div className="hidden md:block md:overflow-x-auto">
         <table className="w-full text-left border border-gray-200 rounded-xl">
           <thead className="bg-gray-100">
             <tr>

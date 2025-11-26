@@ -5,35 +5,47 @@ import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { IoMdPricetags } from "react-icons/io";
+import { useAuth } from "../../context/AuthProvider/page"; // MUST ADD THIS
 
 export default function ProductDetails() {
   const { id } = useParams();
   const router = useRouter();
 
+  const { user, loading } = useAuth(); // 🔐 Auth state
+
   const [product, setProduct] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loadingProduct, setLoadingProduct] = useState(true);
+
 
   useEffect(() => {
-    fetch(`http://localhost:5000/shop/${id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setProduct(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error(err);
-        toast.error("Failed to load product details!");
-        setLoading(false);
-      });
-  }, [id]);
-
-  useEffect(() => {
-    if (product) {
-      document.title = `Product | ${product.name}`;
+    if (!loading && !user) {
+      toast.error("Please login to view product details!");
+      router.push("/Login");
     }
-  }, [product]);
+  }, [user, loading, router]);
 
-  if (loading) {
+  // Fetch product only if user exists
+  useEffect(() => {
+    if (user) {
+      fetch(`http://localhost:5000/shop/${id}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setProduct(data);
+          setLoadingProduct(false);
+        })
+        .catch((err) => {
+          console.error(err);
+          toast.error("Failed to load product details!");
+          setLoadingProduct(false);
+        });
+    }
+  }, [id, user]);
+
+  if (loading || !user) {
+    return <div className="mt-10 text-lg font-semibold text-center">Checking access...</div>;
+  }
+
+  if (loadingProduct) {
     return <div className="mt-10 text-lg font-semibold text-center">Loading...</div>;
   }
 
@@ -45,6 +57,7 @@ export default function ProductDetails() {
     <div className="max-w-5xl p-6 mx-auto my-8">
       <div className="overflow-hidden bg-white border border-gray-200 shadow-2xl rounded-2xl">
         <div className="flex flex-col gap-8 p-6 md:flex-row">
+
           {/* Product Image */}
           <div className="w-full md:w-1/2">
             <img
@@ -65,11 +78,15 @@ export default function ProductDetails() {
             <div className="my-3 border-t border-gray-300"></div>
 
             <p>
-              <span className="font-semibold">Category:</span> <span className="text-[#78C841]"> {product.category}</span>
+              <span className="font-semibold">Category:</span>
+              <span className="text-[#78C841]"> {product.category}</span>
             </p>
+
             <p>
-              <span className="font-semibold">Unit:</span> <span className="text-orange-400">{product.unit}</span>
+              <span className="font-semibold">Unit:</span>
+              <span className="text-orange-400">{product.unit}</span>
             </p>
+
             <p>
               <span className="font-semibold">Stock:</span> {product.stock}
             </p>
@@ -78,18 +95,20 @@ export default function ProductDetails() {
               <p className="flex items-center gap-1">
                 <IoMdPricetags /> Price: <span className="text-[#4895ef]">${product.price}</span>
               </p>
+
               <p>⭐⭐⭐⭐⭐ {product.rating}</p>
             </div>
 
             {/* Back Button */}
             <div className="mt-6">
               <button
-                onClick={() => router.push("/")}
+                onClick={() => router.push("/shop")}
                 className="w-full py-2 border bg-[#78C841] rounded-full hover:bg-green-500"
               >
                 Back to Products
               </button>
             </div>
+
           </div>
         </div>
       </div>

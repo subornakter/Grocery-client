@@ -1,7 +1,7 @@
 "use client";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { Navigation,Autoplay  } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 
@@ -9,12 +9,18 @@ export default function Banner() {
   return (
     <div className="relative w-full h-[500px]">
       <Swiper
-        modules={[Navigation]}
+        modules={[Navigation,Autoplay ]}
         navigation={{
           nextEl: ".swiper-button-next-custom",
           prevEl: ".swiper-button-prev-custom",
         }}
         loop={true}
+        
+
+        autoplay={{
+          delay: 2500,        
+          disableOnInteraction: false,
+        }}
         className="h-full"
       >
         {/* ===== Slide 1 ===== */}
