@@ -43,7 +43,7 @@ export default function Shop() {
 
   return (
     <div className="p-4 mx-auto max-w-7xl">
-      <div className="mb-2 text-2xl font-bold text-center">All Products</div>
+      <div className="mb-2  bg-gradient-to-r from-[#bfe30a] via-[#83e54e] to-[#5bb52a] bg-clip-text text-transparent text-3xl font-bold text-center">All Products</div>
       <p className="mb-6 text-center">Explore necessary grocery products.</p>
 
       {/* Search & Category Filter */}

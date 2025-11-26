@@ -40,7 +40,7 @@ export default function Navbar() {
         <div className="items-center justify-center hidden gap-6 md:flex">
           <Link href="/" className={isActive("/")}>Home</Link>
           <Link href="/shop" className={isActive("/shop")}>Shop</Link>
-          <Link href="/categories" className={isActive("/categories")}>Categories</Link>
+          <Link href="/about" className={isActive("/about")}>About</Link>
           <Link href="/offers" className={isActive("/offers")}>Offers</Link>
           <Link href="/contact" className={isActive("/contact")}>Contact</Link>
         </div>
@@ -66,13 +66,25 @@ export default function Navbar() {
           ) : (
             <div className="relative flex items-center gap-4">
 
-              {/* Profile Image */}
-              <button onClick={() => setDropdown(!dropdown)}>
+              {/* Profile Image + Arrow (ADDED) */}
+              <button
+                onClick={() => setDropdown(!dropdown)}
+                className="flex items-center gap-2"
+              >
                 <img
                   src={user?.photoURL || "https://via.placeholder.com/40"}
                   className="w-10 h-10 border rounded-full cursor-pointer"
                   alt="user"
                 />
+
+                {/* ▼ Arrow Icon */}
+                <span
+                  className={`transition-transform duration-300 text-xl ${
+                    dropdown ? "rotate-180" : ""
+                  }`}
+                >
+                  ▼
+                </span>
               </button>
 
               {/* Logout Button */}
@@ -123,7 +135,7 @@ export default function Navbar() {
         <div className="px-4 pb-4 bg-white md:hidden">
           <Link href="/" className={`block py-2 ${isActive("/")}`}>Home</Link>
           <Link href="/shop" className={`block py-2 ${isActive("/shop")}`}>Shop</Link>
-          <Link href="/categories" className={`block py-2 ${isActive("/categories")}`}>Categories</Link>
+          <Link href="/about" className={`block py-2 ${isActive("/about")}`}>About</Link>
           <Link href="/offers" className={`block py-2 ${isActive("/offers")}`}>Offers</Link>
           <Link href="/contact" className={`block py-2 ${isActive("/contact")}`}>Contact</Link>
 

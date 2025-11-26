@@ -8,10 +8,10 @@ export default async function CardSection() {
     console.log(data)
   return (
      <div>
-         <div className="text-2xl text-center font-bold">All Products</div>
+         <div className="text-3xl  bg-gradient-to-r from-[#bfe30a] via-[#83e54e] to-[#5bb52a] bg-clip-text text-transparent font-bold text-center">All Products</div>
        <title>Grocery - Latest Products</title>
   
-         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4 p-4">
+         <div className="grid grid-cols-1 gap-4 p-4 md:grid-cols-3 lg:grid-cols-4">
          {data.map((product) => (
              <ProductCard key={product._id} product={product} />
          ))}
