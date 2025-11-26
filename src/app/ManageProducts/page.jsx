@@ -26,7 +26,7 @@ export default function ManageProducts() {
   // Fetch products
   useEffect(() => {
     if (user) {
-      fetch(`http://localhost:5000/ManageProducts?email=${user.email}`)
+      fetch(`https://grocery-project-server.vercel.app/ManageProducts?email=${user.email}`)
         .then((res) => res.json())
         .then((data) => setProducts(data))
         .catch((err) => {
@@ -48,7 +48,7 @@ export default function ManageProducts() {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/ManageProducts/${id}`, { method: "DELETE" })
+        fetch(`https://grocery-project-server.vercel.app/ManageProducts/${id}`, { method: "DELETE" })
           .then((res) => res.json())
           .then(() => {
             setProducts((prev) => prev.filter((p) => p._id !== id));
@@ -90,7 +90,7 @@ export default function ManageProducts() {
   //     addedBy: user?.email || "anonymous",
   //   };
 
-  //   fetch(`http://localhost:5000/ManageProducts/${editingProduct._id}`, {
+  //   fetch(`https://grocery-project-server.vercel.app/ManageProducts/${editingProduct._id}`, {
   //     method: "PUT",
   //     headers: { "Content-Type": "application/json" },
   //     body: JSON.stringify(updatedProduct),
@@ -129,7 +129,7 @@ const handleUpdateProduct = (e) => {
     addedBy: user?.email || "anonymous",
   };
 
-  fetch(`http://localhost:5000/ManageProducts/${editingProduct._id}`, {
+  fetch(`https://grocery-project-server.vercel.app/ManageProducts/${editingProduct._id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(updatedProduct),

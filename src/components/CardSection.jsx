@@ -3,7 +3,7 @@ import ProductCard from '@/app/ProductCard/page'
 import React from 'react'
 
 export default async function CardSection() {
-      const res = await fetch('http://localhost:5000/latestProducts')
+      const res = await fetch('https://grocery-project-server.vercel.app/latestProducts')
     const data = await res.json()
     console.log(data)
   return (
