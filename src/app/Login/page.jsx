@@ -6,8 +6,17 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { FaGoogle } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { AuthContext } from "@/context/AuthContext";
+import { Suspense } from "react";
 
-const Login = () => {
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<div className="mt-20 text-center">Loading...</div>}>
+      <LoginContent />
+    </Suspense>
+  );
+}
+
+function LoginContent() {
   const { signInUser, signInWithGoogle } = useContext(AuthContext);
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -94,9 +103,8 @@ const Login = () => {
       </div>
     </div>
   );
-};
+}
 
-export default Login;
 
 
 
