@@ -4,11 +4,20 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function ProductCard({ product }) {
-  const { name, category, price, unit, rating, stock, image } = product;
+  if (!product) return null; // Prevent crash if product is undefined
+
+  const {
+    name = "No name",
+    category = "Unknown",
+    price = "-",
+    unit = "",
+    rating = 0,
+    stock = 0,
+    image = "/placeholder.png",
+  } = product;
 
   return (
     <div className="overflow-hidden transition-all duration-300 bg-white rounded-lg shadow-md hover:shadow-xl hover:-translate-y-2">
-      
       {/* Image */}
       <div className="w-full overflow-hidden bg-white h-50">
         <Image
@@ -22,19 +31,16 @@ export default function ProductCard({ product }) {
 
       {/* Content */}
       <div className="p-4 space-y-2">
-        
         <h2 className="text-lg font-bold">{name}</h2>
-
         <p className="text-sm text-gray-500">
           Category: <span className="font-semibold text-[#85A947]">{category}</span>
         </p>
-
         <p className="text-sm text-gray-500">
           Stock: <span className="font-bold text-green-700">{stock}</span> available
         </p>
-
         <p className="text-lg font-bold text-gray-900">
-          <span className="font-light text-gray-600">price: </span>{price} <span className="text-sm text-gray-500">/{unit}</span>
+          <span className="font-light text-gray-600">price: </span>
+          {price} <span className="text-sm text-gray-500">/{unit}</span>
         </p>
 
         {/* Rating */}
@@ -55,4 +61,3 @@ export default function ProductCard({ product }) {
     </div>
   );
 }
-
