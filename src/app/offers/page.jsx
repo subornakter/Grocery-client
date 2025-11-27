@@ -102,7 +102,7 @@ export default function OffersPage() {
       <section className="p-8 mt-5 text-center text-white bg-[#78C841] shadow-lg rounded-xl">
         <h2 className="mb-2 text-3xl font-bold">Don't Miss Out!</h2>
         <p className="mb-4">Shop now and save big on your favorite groceries!</p>
-        <button className="px-6  py-3 font-semibold text-white transition bg-[#F87B1B] rounded-lg hover:bg-[#F87B1B]">
+        <button className="px-6  py-3 font-semibold text-white transition bg-gradient-to-r from-[#4f8928] to-[#529723] rounded-lg hover:from-green-700 hover:to-green-900">
           Shop Now
         </button>
       </section>

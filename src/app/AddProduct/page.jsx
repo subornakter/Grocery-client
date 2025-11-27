@@ -1,7 +1,7 @@
 "use client";
 
 import { useContext } from "react";
-import { AuthContext } from "../context/AuthContext/page.jsx";
+import { AuthContext } from "@/context/AuthContext";
 import { toast } from "react-toastify";
 
 export default function AddProduct() {

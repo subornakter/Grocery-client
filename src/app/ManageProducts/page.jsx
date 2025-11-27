@@ -4,7 +4,9 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
-import { useAuth } from "../context/AuthProvider/page";
+import { useAuth } from "../../context/AuthProvider"; // MUST ADD THIS
+
+
 
 export default function ManageProducts() {
   const { user, loading } = useAuth();
@@ -159,7 +161,7 @@ const handleUpdateProduct = (e) => {
         <img
           src={product.image}
           alt={product.name}
-          className="w-full h-40 object-cover rounded mb-3"
+          className="object-cover w-full h-40 mb-3 rounded"
         />
         <h2 className="text-lg font-semibold">{product.name}</h2>
         <p className="text-sm text-gray-500">Category: {product.category}</p>

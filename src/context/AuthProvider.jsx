@@ -1,7 +1,7 @@
 "use client"; // THIS IS IMPORTANT
 
 import React, { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../AuthContext/page.jsx";
+
 import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
@@ -11,7 +11,9 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
-import { auth } from "../../firebase/firebase.config.js";
+
+import { AuthContext } from "./AuthContext.jsx";
+import { auth } from "@/app/firebase/firebase.config.js";
 
 const googleProvider = new GoogleAuthProvider();
 

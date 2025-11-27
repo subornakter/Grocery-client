@@ -3,16 +3,17 @@
 import { useState, useContext } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { AuthContext } from "../app/context/AuthContext/page.jsx";
+
 import { HiMenu, HiX } from "react-icons/hi";
 import { FaPlus, FaBox } from "react-icons/fa6";
 import { IoLogOut } from "react-icons/io5";
+import { AuthContext } from "@/context/AuthContext";
 
 export default function Navbar() {
   const { user, signOutUser } = useContext(AuthContext);
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdown, setDropdown] = useState(false);
-
+   console.log("user photoURL:", user?.photoURL);
   const pathname = usePathname();
   const isActive = (route) =>
     pathname === route
@@ -76,7 +77,7 @@ export default function Navbar() {
                   className="w-10 h-10 border rounded-full cursor-pointer"
                   alt="user"
                 />
-
+             
                 {/* ▼ Arrow Icon */}
                 <span
                   className={`transition-transform duration-300 text-xl ${

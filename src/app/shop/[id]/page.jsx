@@ -5,7 +5,8 @@ import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { IoMdPricetags } from "react-icons/io";
-import { useAuth } from "../../context/AuthProvider/page"; // MUST ADD THIS
+import { useAuth } from "@/context/AuthProvider";
+
 
 export default function ProductDetails() {
   const { id } = useParams();
@@ -27,7 +28,7 @@ export default function ProductDetails() {
   // Fetch product only if user exists
   useEffect(() => {
     if (user) {
-      fetch(`http://localhost:5000/shop/${id}`)
+      fetch(`https://grocery-project-server.vercel.app/shop/${id}`)
         .then((res) => res.json())
         .then((data) => {
           setProduct(data);

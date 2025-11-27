@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { use } from 'react';
-import { AuthContext } from './app/context/AuthContext/page';
+import { AuthContext } from './context/AuthContext';
 
  
 // This function can be marked `async` if using `await` inside
