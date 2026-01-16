@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 import { ToastContainer } from "react-toastify";
-import AuthProvider from "@/context/AuthProvider";
+import  AuthProvider  from "@/context/AuthProvider";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],

@@ -1,4 +1,3 @@
-// app/products/[id]/page.jsx
 "use client";
 
 import { useEffect, useState } from "react";
@@ -7,44 +6,29 @@ import { toast } from "react-toastify";
 import { IoMdPricetags } from "react-icons/io";
 import { useAuth } from "@/context/AuthProvider";
 
-
 export default function ProductDetails() {
   const { id } = useParams();
   const router = useRouter();
 
-  const { user, loading } = useAuth(); // 🔐 Auth state
+  const { user, loading } = useAuth(); // Auth state (optional now)
 
   const [product, setProduct] = useState(null);
   const [loadingProduct, setLoadingProduct] = useState(true);
 
-
+  // Fetch product regardless of user
   useEffect(() => {
-    if (!loading && !user) {
-      toast.error("Please login to view product details!");
-      router.push("/Login");
-    }
-  }, [user, loading, router]);
-
-  // Fetch product only if user exists
-  useEffect(() => {
-    if (user) {
-      fetch(`https://grocery-project-server.vercel.app/shop/${id}`)
-        .then((res) => res.json())
-        .then((data) => {
-          setProduct(data);
-          setLoadingProduct(false);
-        })
-        .catch((err) => {
-          console.error(err);
-          toast.error("Failed to load product details!");
-          setLoadingProduct(false);
-        });
-    }
-  }, [id, user]);
-
-  if (loading || !user) {
-    return <div className="mt-10 text-lg font-semibold text-center">Checking access...</div>;
-  }
+    fetch(`https://grocery-project-server.vercel.app/shop/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setProduct(data);
+        setLoadingProduct(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        toast.error("Failed to load product details!");
+        setLoadingProduct(false);
+      });
+  }, [id]);
 
   if (loadingProduct) {
     return <div className="mt-10 text-lg font-semibold text-center">Loading...</div>;

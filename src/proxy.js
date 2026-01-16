@@ -17,5 +17,5 @@ export function proxy(request) {
  
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: '/ProductDetails/:path*',
+  matcher: '/some/:path*',
 }
