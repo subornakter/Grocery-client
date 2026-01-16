@@ -98,12 +98,12 @@ src/
 ```
 #### 🚀 Live Demo & Repositories
 
-🔗 **Live Demo:**  
-https://your-live-demo-url.com
+🔗 **Live Demo:** 
+https://grocery-client-siuh.vercel.app/
 
 📦 **Client Repository:**  
-https://github.com/your-username/grocery-client
+https://github.com/subornakter/Grocery-client
 
 🖥️ **Server Repository:**  
-https://github.com/your-username/grocery-server
+https://github.com/subornakter/Grocery-server
 
