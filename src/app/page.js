@@ -16,7 +16,7 @@ export default function Home() {
       {/* Banner Section */}
       <Banner />
 
-      {/* Category Section */}
+   
       <div className="mt-10 mb-0">
         <Category />
       </div>
